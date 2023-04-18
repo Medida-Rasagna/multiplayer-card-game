@@ -264,4 +264,25 @@ public void testPlayCard_emptyDiscardPile() {
     assertEquals(null, game.getWinner());
 }
 
+// Test case14 for skipping a turn with a Jack card
+@Test
+public void testHandleJack() {
+CardGame game = new CardGame();
+Player player1 = new Player("Alice");
+Player player2 = new Player("Bob");
+Player player3 = new Player("Charlie");
+game.addPlayer(player1);
+game.addPlayer(player2);
+game.addPlayer(player3);
+
+scss
+Copy code
+// Player 1 plays a Jack card
+game.playCard(player1, new Card(Suit.HEARTS, Rank.JACK));
+
+// Check that player2 is skipped and turn moves to player 3
+assertEquals(2, game.getCurrentPlayerIndex());
+assertEquals(player3, game.getPlayers().get(game.getCurrentPlayerIndex()));
+}
+
                   
