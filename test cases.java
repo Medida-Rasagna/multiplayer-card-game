@@ -275,8 +275,6 @@ game.addPlayer(player1);
 game.addPlayer(player2);
 game.addPlayer(player3);
 
-scss
-Copy code
 // Player 1 plays a Jack card
 game.playCard(player1, new Card(Suit.HEARTS, Rank.JACK));
 
