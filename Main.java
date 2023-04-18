@@ -51,29 +51,33 @@ public class CardGame {
                 System.out.println(player.getName() + " wins!");
                 return;
             }
-// Handle action cards
-    switch (card.getRank()) {
-        case ACE:
-            currentPlayerIndex = (currentPlayerIndex + 2) % players.size();
-            break;
-        case KING:
-            Collections.reverse(players);
-            currentPlayerIndex = (players.size() - 1) - currentPlayerIndex;
-            break;
-        case QUEEN:
-            currentPlayerIndex = (currentPlayerIndex + 1) % players.size();
-            players.get(currentPlayerIndex).addCardsToHand(deck.remove(0), deck.remove(0));
-            break;
-        case JACK:
-            currentPlayerIndex = (currentPlayerIndex + 1) % players.size();
-            for (int i = 0; i < 4; i++) {
-                players.get(currentPlayerIndex).addCardToHand(deck.remove(0));
+            // Handle action cards
+            switch (card.getRank()) {
+                case ACE:
+                    currentPlayerIndex = (currentPlayerIndex + 2) % players.size();
+                    break;
+                case KING:
+                    Collections.reverse(players);
+                    currentPlayerIndex = (players.size() - 1) - currentPlayerIndex;
+                    break;
+                case QUEEN:
+                    currentPlayerIndex = (currentPlayerIndex + 1) % players.size();
+                    players.get(currentPlayerIndex).addCardsToHand(deck.remove(0), deck.remove(0));
+                    break;
+                case JACK:
+                    currentPlayerIndex = (currentPlayerIndex + 1) % players.size();
+                    for (int i = 0; i < 4; i++) {
+                        players.get(currentPlayerIndex).addCardToHand(deck.remove(0));
+                    }
+                    break;
+                default:
+                    currentPlayerIndex = (currentPlayerIndex + 1) % players.size();
+                    break;
             }
-            break;
-        default:
-            currentPlayerIndex = (currentPlayerIndex + 1) % players.size();
-            break;
+        }
     }
+}
+
 public class Card {
     private Suit suit;
     private Rank rank;
